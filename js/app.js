@@ -267,7 +267,6 @@ class Component extends DCLogic {
     const heroWord = lang === 'ko' ? 'dig' : 'dig';
 
     const workTitles = [
-      { title: 'Ragdoll Fight', tag: 'Physics · Multi', stack: '3D · Realtime Battle', year: '2025', href: 'https://ragdoll-fight.onrender.com/', desc: 'Three.js 물리로 굴러다니는 실시간 멀티 래그돌 격투 웹게임이고요. 개병맛 전투고요.' },
       { title: '메챠 카멜레온', tag: '3D · Multi', stack: 'Web · 3D · Multiplayer', year: '2026', href: 'https://meccha-chameleon-km4t.onrender.com', desc: '웹에서 돌아가게 작게 만들어봤고요. 3D고요 멀티고요.' },
       { title: 'PR51', tag: 'Pixel RPG', stack: '2D · Multi', year: '2026', href: 'https://pr51.onrender.com', desc: '픽셀 2D RPG고요 멀티고요 아기자기하고요.' },
       { title: 'Work Paint', tag: 'Graphics Engine', stack: 'Drawing · Download', year: '2026', href: 'https://drive.usercontent.google.com/download?id=1D73GdXCLyo753ZV4XoO_o6u8uHsQuiDt&export=download&confirm=t', download: true, desc: '저사양에서도 도는 전문가용 그래픽 드로잉 엔진이고요. 다운로드해서 쓰시고요.' },
