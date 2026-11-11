@@ -269,7 +269,6 @@ class Component extends DCLogic {
     const workTitles = [
       { title: '메챠 카멜레온', tag: '3D · Multi', stack: 'Web · 3D · Multiplayer', year: '2026', href: 'https://meccha-chameleon-km4t.onrender.com', desc: '웹에서 돌아가게 작게 만들어봤고요. 3D고요 멀티고요.' },
       { title: 'PR51', tag: 'Pixel RPG', stack: '2D · Multi', year: '2026', href: 'https://pr51.onrender.com', desc: '픽셀 2D RPG고요 멀티고요 아기자기하고요.' },
-      { title: 'Work Paint', tag: 'Graphics Engine', stack: 'Drawing · Download', year: '2026', href: 'https://drive.usercontent.google.com/download?id=1D73GdXCLyo753ZV4XoO_o6u8uHsQuiDt&export=download&confirm=t', download: true, desc: '저사양에서도 도는 전문가용 그래픽 드로잉 엔진이고요. 다운로드해서 쓰시고요.' },
       { title: 'DOTVERSE', tag: 'Block · Database', stack: 'Visual Blocks · Realtime DB', year: '2026', href: 'https://dotevers.onrender.com/', desc: '블록 코딩으로 작품을 만들고 실시간 데이터베이스까지 다루는 제작 플랫폼이고요.' },
       { title: 'Coop', tag: 'Messenger · Download', stack: 'Desktop · 1:1 Realtime', year: '2026', href: 'https://drive.usercontent.google.com/download?id=19MTgeIjDL3cLoIMRGYAb-zxCvBJIpFPW&export=download&confirm=t', download: true, desc: '단 한 사람과만 대화하며 같이 나무를 키우는 메신저고요. 누르면 바로 다운로드되고요.' },
       { title: 'SecLite', tag: 'Security · Download', stack: 'Hardened · Isolated Browser', year: '2026', href: 'https://drive.google.com/drive/folders/1HbKlQEwGvwStandZxj3cuKdcSgR79qDY', desc: '격리랑 하드닝으로 보안 개쩌는 브라우저고요. 눌러서 받으시고요.' },
@@ -285,15 +284,11 @@ class Component extends DCLogic {
       this._toastTimer = setTimeout(() => this.setState({ toast: '' }), 2600);
     };
 
-    const palettes = [
-      'linear-gradient(135deg, #3d1420, #1a0a0f)',
-      'linear-gradient(135deg, #1a3d2e, #0f2417)',
-      'linear-gradient(135deg, #3d2817, #1a1a1a)',
-      'linear-gradient(135deg, #1a2e3d, #0f1724)',
-      'linear-gradient(135deg, #30204a, #171322)',
-      'linear-gradient(135deg, #2f4a2b, #14241a)',
-      'linear-gradient(135deg, #17384a, #0b1a24)',
-    ];
+    // 카드마다 겹치지 않는 색 (황금각 간격 색상)
+    const cardBg = (i) => {
+      const h = Math.round((i * 137.508 + 345) % 360);
+      return `linear-gradient(135deg, hsl(${h},48%,17%), hsl(${h},40%,7%))`;
+    };
 
     const n = workTitles.length;
     const expanded = this.state.expanded;
@@ -323,7 +318,7 @@ class Component extends DCLogic {
 
       return {
         ...w,
-        num: '№ ' + String(i + 1).padStart(2, '0'),
+        num: 'NO. ' + String(i + 1).padStart(2, '0'),
         badgeStyle: off
           ? 'position:absolute; inset:0; border-radius:20px; background:rgba(8,8,9,0.72); backdrop-filter:blur(2px); display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; font-size:12px; letter-spacing:0.12em; color:#d8d8d8; line-height:1.6;'
           : 'display:none;',
@@ -346,7 +341,7 @@ class Component extends DCLogic {
         },
         enter: () => {},
         leave: () => {},
-        style: `position:absolute; left:50%; top:50%; width:240px; height:340px; border-radius:20px; background:${palettes[i % palettes.length]}; ${off ? 'filter:grayscale(1) brightness(0.65);' : ''} border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 40px rgba(0,0,0,0.4); transform: translate(-50%,-50%) translateX(${dx}px) translateY(${dy}px) rotateZ(${rz}deg) rotateY(${ry}deg); transform-style:preserve-3d; z-index:${z}; transition: transform 0.85s cubic-bezier(.22,.61,.36,1), box-shadow 0.5s cubic-bezier(.22,.61,.36,1); --dx:${dx}px; --dy:${dy}px; --rz:${rz}deg; --ry:${ry}deg; will-change: transform;`
+        style: `position:absolute; left:50%; top:50%; width:240px; height:340px; border-radius:20px; background:${cardBg(i)}; ${off ? 'filter:grayscale(1) brightness(0.65);' : ''} border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 40px rgba(0,0,0,0.4); transform: translate(-50%,-50%) translateX(${dx}px) translateY(${dy}px) rotateZ(${rz}deg) rotateY(${ry}deg); transform-style:preserve-3d; z-index:${z}; transition: transform 0.85s cubic-bezier(.22,.61,.36,1), box-shadow 0.5s cubic-bezier(.22,.61,.36,1); --dx:${dx}px; --dy:${dy}px; --rz:${rz}deg; --ry:${ry}deg; will-change: transform;`
       };
     });
 
